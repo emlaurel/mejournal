@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lia's journal ✿</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #eee4ff;
+      --light: #fffaff;
+      --purple: #8d5ac7;
+      --dark-purple: #4c2c70;
+      --lavender: #c9a7f5;
+      --pink: #f5d8f3;
+      --text: #55366d;
+      --border: #a879c9;
+      --shadow: #d8bcec;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "trebuchet ms", arial, sans-serif;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(#d5baf3 1px, transparent 1px),
+        linear-gradient(135deg, rgba(255,255,255,.5), transparent);
+      background-size: 18px 18px, 100% 100%;
+      text-transform: lowercase;
+    }
+
+    a {
+      color: var(--purple);
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #bd5caf;
+      text-decoration: underline;
+    }
+
+    .page {
+      width: min(1120px, 94%);
+      margin: 24px auto;
+      background: rgba(255, 250, 255, .94);
+      border: 4px double var(--border);
+      box-shadow: 9px 9px 0 rgba(104, 61, 137, .2);
+    }
+
+    header {
+      position: relative;
+      padding: 28px 22px 22px;
+      text-align: center;
+      background:
+        linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),
+        repeating-linear-gradient(
+          45deg,
+          #d7b9f1,
+          #d7b9f1 12px,
+          #c8a2e7 12px,
+          #c8a2e7 24px
+        );
+      border-bottom: 3px dashed var(--purple);
+    }
+
+    header::before {
+      content: "✿";
+      position: absolute;
+      top: 15px;
+      left: 22px;
+      color: #a875c9;
+      font-size: 30px;
+      transform: rotate(-15deg);
+    }
+
+    header::after {
+      content: "✧";
+      position: absolute;
+      right: 25px;
+      bottom: 18px;
+      color: #a875c9;
+      font-size: 28px;
+      transform: rotate(12deg);
+    }
+
+    .tiny-top {
+      color: #79518f;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      margin: 5px 0;
+      color: var(--dark-purple);
+      font-family: georgia, serif;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-style: italic;
+      text-shadow: 3px 3px 0 #ead8fa;
+    }
+
+    .subtitle {
+      color: #87549e;
+      font-family: georgia, serif;
+      font-size: 15px;
+    }
+
+    .flowers {
+      margin-top: 10px;
+      color: #9e69c7;
+      font-size: 27px;
+      letter-spacing: 12px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px;
+      background: #f8eefe;
+      border-bottom: 2px solid var(--border);
+    }
+
+    nav a {
+      padding: 6px 13px;
+      color: white;
+      background: var(--purple);
+      border: 2px outset #cfa6ea;
+      font-size: 12px;
+    }
+
+    nav a:active {
+      border-style: inset;
+    }
+
+    .notice {
+      overflow: hidden;
+      padding: 7px;
+      color: #6a3c86;
+      background: #fff1ff;
+      border-bottom: 2px dotted var(--border);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .notice span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll-text 18s linear infinite;
+    }
+
+    @keyframes scroll-text {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 245px 1fr;
+      gap: 18px;
+      padding: 18px;
+    }
+
+    .box,
+    .main-post {
+      margin-bottom: 16px;
+      background: var(--cream);
+      border: 2px solid var(--border);
+      box-shadow: 4px 4px 0 var(--shadow);
+    }
+
+    .box {
+      padding: 14px;
+    }
+
+    .box-title {
+      margin: -14px -14px 12px;
+      padding: 7px;
+      color: white;
+      background: linear-gradient(90deg, var(--purple), #b184dc);
+      border-bottom: 2px solid var(--border);
+      font-family: georgia, serif;
+      font-size: 17px;
+      font-style: italic;
+    }
+
+    .profile {
+      text-align: center;
+    }
+
+    .avatar {
+      display: grid;
+      place-items: center;
+      width: 125px;
+      height: 125px;
+      margin: 8px auto 12px;
+      background:
+        radial-gradient(circle at 35% 30%, #fff 0 8%, transparent 9%),
+        linear-gradient(135deg, #ead8ff, #c895e8);
+      border: 4px solid #b17bda;
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 5px #f9edff;
+    }
+
+    .avatar-flower {
+      position: relative;
+      width: 52px;
+      height: 52px;
+      color: #ffd36a;
+      background: #ffd36a;
+      border: 4px solid #9d67c8;
+      border-radius: 50%;
+      box-shadow:
+        0 -27px 0 -5px #c69bea,
+        0 27px 0 -5px #c69bea,
+        27px 0 0 -5px #c69bea,
+        -27px 0 0 -5px #c69bea,
+        19px 19px 0 -5px #c69bea,
+        -19px 19px 0 -5px #c69bea,
+        19px -19px 0 -5px #c69bea,
+        -19px -19px 0 -5px #c69bea;
+    }
+
+    .profile p,
+    .box li {
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .box ul {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+
+    .sticker {
+      display: inline-block;
+      margin: 3px;
+      padding: 4px 7px;
+      color: #6a3c86;
+      background: #ead4fa;
+      border: 1px dashed #9a65bb;
+      font-size: 11px;
+      transform: rotate(-2deg);
+    }
+
+    .sticker:nth-child(even) {
+      background: #f6d8ef;
+      transform: rotate(3deg);
+    }
+
+    .main-post {
+      padding: 19px;
+      background: white;
+    }
+
+    .post-date {
+      color: #9970b4;
+      font-size: 12px;
+    }
+
+    h2 {
+      margin: 5px 0 12px;
+      color: var(--dark-purple);
+      font-family: georgia, serif;
+      font-size: 30px;
+      font-style: italic;
+    }
+
+    h3 {
+      margin-top: 28px;
+      padding-bottom: 4px;
+      color: var(--purple);
+      border-bottom: 1px dashed var(--border);
+      font-family: georgia, serif;
+      font-size: 21px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .intro {
+      padding: 13px;
+      background: #f6ecff;
+      border-left: 5px solid var(--purple);
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .mini-card,
+    .credential-card {
+      padding: 12px;
+      background: #fff9ff;
+      border: 1px solid #d4b5e8;
+    }
+
+    .mini-card h4,
+    .credential-card h4 {
+      margin: 0 0 7px;
+      color: var(--dark-purple);
+      font-family: georgia, serif;
+      font-size: 17px;
+    }
+
+    .mini-card ul,
+    .credential-card ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .mini-card li,
+    .credential-card li {
+      margin-bottom: 6px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .credential-card {
+      margin-top: 15px;
+    }
+
+    .award {
+      display: inline-block;
+      margin: 4px;
+      padding: 6px 9px;
+      color: #633b7e;
+      background: #f1dcff;
+      border: 1px dashed #a879c9;
+      font-size: 12px;
+    }
+
+    .drive-box {
+      margin-top: 15px;
+      padding: 15px;
+      background: linear-gradient(135deg, #f8eaff, #fff8fd);
+      border: 2px dashed var(--border);
+    }
+
+    .drive-box strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--dark-purple);
+      font-family: georgia, serif;
+      font-size: 18px;
+    }
+
+    .drive-button {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 8px 12px;
+      color: white;
+      background: var(--purple);
+      border: 2px outset #cfa6ea;
+      font-size: 12px;
+    }
+
+    .drive-button:hover {
+      color: white;
+      text-decoration: none;
+      background: #a96ed4;
+    }
+
+    .anime-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .anime-card {
+      overflow: hidden;
+      background: #f9efff;
+      border: 2px solid var(--border);
+      box-shadow: 4px 4px 0 var(--shadow);
+    }
+
+    .anime-card img {
+      display: block;
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      background: linear-gradient(135deg, #cdb1ef, #f8d8f1);
+    }
+
+    .anime-card h4 {
+      margin: 10px 12px 4px;
+      color: var(--dark-purple);
+      font-family: georgia, serif;
+      font-size: 19px;
+    }
+
+    .anime-card p {
+      margin: 0 12px 14px;
+      font-size: 13px;
+    }
+
+    .project {
+      margin-top: 12px;
+      padding: 15px;
+      background: linear-gradient(135deg, #f8eaff, #fff8fd);
+      border: 2px dashed var(--border);
+    }
+
+    .project strong {
+      color: var(--dark-purple);
+      font-family: georgia, serif;
+      font-size: 18px;
+    }
+
+    .project p {
+      margin-bottom: 7px;
+    }
+
+    .link-list a {
+      display: block;
+      margin: 8px 0;
+      padding: 6px 8px;
+      background: #f2e1ff;
+      border: 1px dotted #a575c0;
+      font-size: 13px;
+    }
+
+    footer {
+      padding: 17px;
+      color: #724b89;
+      background: #ead8f7;
+      border-top: 3px double var(--border);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .sparkles {
+      color: #a15ec4;
+      letter-spacing: 8px;
+    }
+
+    @media (max-width: 760px) {
+      .layout,
+      .columns,
+      .anime-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page {
+        width: 96%;
+        margin: 10px auto;
+      }
+
+      .layout {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <header id="home">
+      <div class="tiny-top">♡ welcome to my humble abode ♡</div>
+
+      <h1>lia's journal</h1>
+
+      <div class="subtitle">
+        random thoughts, movie opinions, games, little achievements & everything in between
+      </div>
+
+      <div class="flowers">✿ ❀ ✿ ❁ ✿</div>
+    </header>
+
+    <nav>
+      <a href="#home">home</a>
+      <a href="#about">about me</a>
+      <a href="#credentials">credentials</a>
+      <a href="#hobbies">hobbies</a>
+      <a href="#games">games</a>
+      <a href="#movies">movies & shows</a>
+      <a href="#creative">creative life</a>
+      <a href="#links">find me</a>
+    </nav>
+
+    <div class="notice">
+      <span>✦ currently reading, playing random games, baking something, and probably sleeping later ✦</span>
+    </div>
+
+    <div class="layout">
+
+      <aside>
+        <div class="box profile">
+          <div class="box-title">♡ me me me ♡</div>
+
+          <div class="avatar" aria-label="lavender flower icon">
+            <span class="avatar-flower"></span>
+          </div>
+
+          <p>
+            hi! i'm lia laurel, a second-year bma student who looooves stories,
+            pretty little things, scary movies, anime, and trying random
+            creative hobbies that led me to my chosen prog xD
+          </p>
+
+          <span class="sticker">2nd year bma</span>
+          <span class="sticker">man idk</span>
+          <span class="sticker">ehh</span>
+          <span class="sticker">ayown</span>
+        </div>
+
+        <div class="box">
+          <div class="box-title">✿ quick facts ✿</div>
+
+          <ul>
+            <li>second-year bma student</li>
+            <li>humss graduate</li>
+            <li>loves horror movies</li>
+            <li>currently watching anime</li>
+            <li>learning photography</li>
+            <li>makes junk journals</li>
+            <li>loves sleeping the most</li>
+          </ul>
+        </div>
+
+        <div class="box" id="links">
+          <div class="box-title">♡ find me online ♡</div>
+
+          <div class="link-list">
+            <a href="https://www.facebook.com/lialaurel8" target="_blank">
+              ✿ facebook
+            </a>
+
+            <a href="mailto:laurelmuriel@gmail.com">
+              ✉ email
+            </a>
+
+            <a href="https://letterboxd.com/lia_laurr/" target="_blank">
+              🎞 letterboxd — let's be mutuals
+            </a>
+
+            <a href="https://www.youtube.com/@samandcolby" target="_blank">
+              👻 sam & colby on youtube
+            </a>
+
+            <a href="javascript:void(0)">
+              ☾ discord: lia_laurr
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <main>
+        <article class="main-post" id="about">
+          <div class="post-date">posted with love · a little introduction</div>
+
+          <h2>hello, i'm lia! ✧</h2>
+
+          <div class="intro">
+            i'm a second-year bma student, a humss graduate, and someone who
+            is always either making something, watching something, reading
+            something, or thinking about taking a very long nap.
+          </div>
+
+          <p>
+            i love studying and writing, but i also really enjoy the creative
+            side of life. i'm into photography, film production, dancing,
+            arts and crafts, journaling, reading books, baking, cooking, and
+            watching movies and anime.
+          </p>
+
+          <p>
+            i've been interested in photography since elementary school. i
+            didn't have a proper camera before, so i only recently started
+            practicing more seriously now that i finally have one of my own.
+            i'm still learning, but honestly, that's part of the fun.
+          </p>
+
+          <section id="credentials">
+            <h3>my credentials & achievements ✿</h3>
+
+            <p>
+              if u wanna see how i lead, my achievements, and random stuff
+              about me, check this link:
+            </p>
+
+            <div class="drive-box">
+              <strong>my achievements folder ♡</strong>
+
+              <a
+                class="drive-button"
+                href="https://drive.google.com/drive/folders/1UYYRk9t_hrght4nUTXZjODW2MciEWskZ?usp=sharing"
+                target="_blank"
+              >
+                open my drive folder ✧
+              </a>
+            </div>
+
+            <div class="credential-card">
+              <h4>education</h4>
+
+              <ul>
+                <li>st. gabriel academy — humss strand graduate</li>
+                <li>currently a second-year bma student</li>
+              </ul>
+            </div>
+
+            <div class="columns">
+              <div class="credential-card">
+                <h4>leadership experience</h4>
+
+                <ul>
+                  <li>class president, s.y. 2016–2017</li>
+                  <li>class vice president, s.y. 2020–2021</li>
+                  <li>class secretary, s.y. 2021–2022</li>
+                  <li>class secretary, s.y. 2022–2023</li>
+                  <li>ran for student council in 2017</li>
+                  <li>
+                    liaison officer for the student board coordinating council
+                    central board secondary, s.y. 2024–2025
+                  </li>
+                  <li>media officer for sbcc cbs</li>
+                </ul>
+              </div>
+
+              <div class="credential-card">
+                <h4>academic excellence</h4>
+
+                <span class="award">with honors — jhs</span>
+                <span class="award">with honors — shs</span>
+                <span class="award">sbcc active leader awardee</span>
+                <span class="award">deportment awardee, 2023–2025</span>
+                <span class="award">talentadong gabrielan awardee</span>
+              </div>
+            </div>
+
+            <div class="credential-card">
+              <h4>extracurricular activities</h4>
+
+              <ul>
+                <li>gecs performing arts member, s.y. 2016–2017</li>
+                <li>ambassadress for english month, s.y. 2019–2020</li>
+                <li>member of the batang emergency response team</li>
+                <li>
+                  cic secretary, s.y. 2021–2022, for the campus integrity
+                  crusaders at potrero national high school
+                </li>
+                <li>
+                  reading tutor volunteer at potrero elementary school 1,
+                  s.y. 2021–2022
+                </li>
+                <li>the herald club member, s.y. 2023–2024</li>
+                <li>performing arts member, s.y. 2023–2024</li>
+                <li>
+                  sinilikhayaw theatre dance group member,
+                  s.y. 2023–2025
+                </li>
+                <li>kadsa hiphop — 3rd placer</li>
+                <li>best film editor for the gabrielan film festival</li>
+              </ul>
+            </div>
+
+            <div class="columns">
+              <div class="credential-card">
+                <h4>photojournalism & writing</h4>
+
+                <ul>
+                  <li>
+                    photojournalism representative for potrero elementary
+                    school 1, 2018
+                  </li>
+                  <li>
+                    photojournalism representative for potrero national high
+                    school, 2022
+                  </li>
+                  <li>
+                    best news anchor during the english month radio
+                    broadcasting competition
+                  </li>
+                </ul>
+              </div>
+
+              <div class="credential-card">
+                <h4>creative highlights</h4>
+
+                <p>
+                  i enjoy combining writing, performance, photography,
+                  editing, and storytelling. a lot of my school experiences
+                  helped me become more confident in creating and working with
+                  other people.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section id="hobbies">
+            <h3>things i love doing ♡</h3>
+
+            <div class="columns">
+              <div class="mini-card">
+                <h4>creative little hobbies</h4>
+
+                <ul>
+                  <li>reading books</li>
+                  <li>writing</li>
+                  <li>journaling</li>
+                  <li>making junk journals</li>
+                  <li>arts and crafts</li>
+                  <li>photography</li>
+                  <li>dancing</li>
+                </ul>
+              </div>
+
+              <div class="mini-card">
+                <h4>homebody activities</h4>
+
+                <ul>
+                  <li>baking</li>
+                  <li>cooking</li>
+                  <li>watching movies</li>
+                  <li>watching anime</li>
+                  <li>watching ghost videos</li>
+                  <li>sleeping, most importantly</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section id="anime">
+            <h3>my anime corner ✿</h3>
+
+            <p>
+              i also watch anime whenever i have the time. my favorite is
+              naruto, and i recently got really into frieren too. frieren is
+              honestly so calm and pretty, and i love the quiet feeling of the
+              show.
+            </p>
+
+            <div class="anime-grid">
+              <div class="anime-card">
+                <img
+                  src="assets/meep.jpg"
+                  alt="sleeping frieren illustration"
+                />
+
+                <h4>frieren taking a nap ☾</h4>
+
+                <p>
+                  this is basically me after doing one productive thing for
+                  the entire day.
+                </p>
+              </div>
+
+              <div class="anime-card">
+                <img
+                  src="assets/frieren eep.jpg"
+                  alt="frieren sleeping under the moon"
+                />
+
+                <h4>sleepy frieren again ✧</h4>
+
+                <p>
+                  sleepy anime characters are adorable, especially when they
+                  look completely unbothered.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section id="games">
+            <h3>games i've been playing lately ☾</h3>
+
+            <p>
+              my game choices are kind of all over the place. most of the time
+              i want something scary, chaotic, or just fun enough to make me
+              forget the time.
+            </p>
+
+            <div class="columns">
+              <div class="mini-card">
+                <h4>horror & chaos</h4>
+
+                <ul>
+                  <li>outlast — the first one because i like suffering</li>
+                  <li>left 4 dead</li>
+                  <li>r.e.p.o.</li>
+                  <li>roblox horror games</li>
+                </ul>
+              </div>
+
+              <div class="mini-card">
+                <h4>other games</h4>
+
+                <ul>
+                  <li>game of thrones: kingsroad</li>
+                  <li>valorant — playing since 2022</li>
+                  <li>overwatch</li>
+                  <li>apex — downloaded recently, still need to try it lol</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section id="movies">
+            <h3>my movie and series corner 🎞</h3>
+
+            <p>
+              i watch a lot of movies and series, especially horror. i don't
+              really know how to explain my taste except that i love anything
+              creepy, disturbing, supernatural, or unexpectedly violent. i
+              especially like gore-heavy movies, but i also love a good slow
+              burn when it gets under my skin. <br> currently watching house of the dragon. im done with game of thrones too!!
+            </p>
+
+            <div class="project">
+              <strong>movies and series i love</strong>
+
+              <p>
+                the haunting of hill house, the haunting of bly manor, sabrina,
+                anne with an e, lucifer, in a violent nature, insidious,
+                paranormal activity, midsommar, hereditary, get out, and the
+                entire conjuring universe, including the nun and annabelle.
+              </p>
+            </div>
+
+            <div class="project">
+              <strong>my ghost-video phase 👻</strong>
+
+              <p>
+                i also love watching ghost and paranormal videos on youtube,
+                especially sam and colby. there is something so entertaining
+                about watching people explore places i would absolutely never
+                enter myself.
+              </p>
+
+              <a href="https://www.youtube.com/@samandcolby" target="_blank">
+                watch sam & colby on youtube ✧
+              </a>
+            </div>
+
+            <div class="project">
+              <strong>movie friends, let's be mutuals?</strong>
+
+              <p>
+                my letterboxd is still incomplete because i keep forgetting to
+                log what i watch, but you can still follow me anyway hahaha.
+              </p>
+
+              <a href="https://letterboxd.com/lia_laurr/" target="_blank">
+                visit my letterboxd ✿
+              </a>
+            </div>
+          </section>
+
+          <section id="creative">
+            <h3>my creative side ♡</h3>
+
+            <p>
+              i'm not a professional yet and i'm still learning, but i really
+              enjoy trying new things and building my skills little by little.
+              i'm interested in photography, editing, film production,
+              directing, writing, and visual storytelling.
+            </p>
+
+            <div class="drive-box">
+              <strong>some of my creative samples ✧</strong>
+
+              <p>
+                if u wanna see some of the things i've made and the projects
+                i've worked on, u can check this folder:
+              </p>
+
+              <a
+                class="drive-button"
+                href="https://drive.google.com/drive/folders/1EBxOn_Xol26YBXaNm0b6Ga--xGYQah0n?usp=sharing"
+                target="_blank"
+              >
+                view my creative samples ♡
+              </a>
+            </div>
+
+            <div class="project">
+              <strong>school station id</strong>
+
+              <p>
+                helped with the creative direction and production of a school
+                station id.
+              </p>
+
+              <a href="https://youtu.be/ke-7pZYsNxk?si=Cdh1SX5cw-H0greT" target="_blank">
+                watch the station id ✧
+              </a>
+            </div>
+
+            <div class="project">
+              <strong>short film production</strong>
+
+              <p>
+                helped with camera work, behind-the-scenes footage, and editing
+                for a senior high school short film.
+              </p>
+
+              <a href="https://youtu.be/ac-bA_8Wiuo?si=XULj74ZygyPNmfhU" target="_blank">
+                watch the short film ✿
+              </a>
+            </div>
+          </section>
+        </article>
+      </main>
+    </div>
+
+    <footer>
+      <div class="sparkles">✦ ✿ ✧ ❀ ✦</div>
+      made with sleepiness, dehydration, exhaustion, and too many tabs
+      <br />
+      © 2026 lia laurel
+    </footer>
+
+  </div>
+</body>
+</html>
